@@ -12,7 +12,7 @@ public class CameraMover : MonoBehaviour
     public bool CameraMoveMode
     {
         get { return cameraMoveMode; }
-        set { cameraMoveMode = value; Debug.Log("Changed!"); }
+        set { cameraMoveMode = value; }
     }
 
     [SerializeField]

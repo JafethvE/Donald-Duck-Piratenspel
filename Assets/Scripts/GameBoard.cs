@@ -92,12 +92,22 @@ public class GameBoard : MonoBehaviour {
     [SerializeField]
     private UIHoverListener uIHoverListener;
 
+    [SerializeField]
+    private List<TreasureTile> treasureTiles;
+
+    [SerializeField]
+    private List<int> possibleTreasureValues;
+
+    [SerializeField]
+    private GameObject treasurePrefab;
+
     //Use this for initialization
     private void Start () {
         playingPlayers = new List<Player>();
 		//DontDestroyOnLoad (gameObject);
         InitialiseGame(2, 0);
         rolled = false;
+        PlaceTreasures();
 	}
 
     public void Roll()
@@ -175,5 +185,15 @@ public class GameBoard : MonoBehaviour {
     void OnMouseUp()
     {
         camera.CameraMoveMode = false;
+    }
+
+    void PlaceTreasures()
+    {
+        foreach(TreasureTile treasureTile in treasureTiles)
+        {
+            GameObject treasureObject = Instantiate(treasurePrefab);
+            treasureObject.GetComponent<Treasure>().Worth = possibleTreasureValues[Random.Range(0, possibleTreasureValues.Count)];
+            treasureObject.transform.SetParent(treasureTile.transform);
+        }
     }
 }

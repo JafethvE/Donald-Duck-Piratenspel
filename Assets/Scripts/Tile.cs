@@ -33,12 +33,18 @@ public class Tile : MonoBehaviour {
     protected bool travelable;
 
     [SerializeField]
-    private float flashDelay;
+    protected float flashDelay;
 
-    private float flash;
+    protected float flash;
 
     [SerializeField]
     protected GameObject lineRendererPrefab;
+
+    [SerializeField]
+    protected UIHoverListener uIHoverListener;
+
+    [SerializeField]
+    protected CameraMover camera;
 
     // Use this for initialization
     protected void Awake () {
@@ -87,6 +93,7 @@ public class Tile : MonoBehaviour {
             }
             else
             {
+                flash = flashDelay;
                 travelable = false;
                 button.interactable = false;
                 background.color = standardBackgroundColour;
@@ -110,7 +117,6 @@ public class Tile : MonoBehaviour {
 
     public void FindRoutes(int roll)
     {
-        Debug.Log(roll);
         List<Tile> endgoals = new List<Tile>();
         List<Tile> goals = neighbours;
         roll--;
@@ -136,7 +142,7 @@ public class Tile : MonoBehaviour {
         }
     }
 
-    private void SetAsTravelGoal()
+    protected void SetAsTravelGoal()
     {
         if(HasRoom())
         { 
@@ -156,7 +162,7 @@ public class Tile : MonoBehaviour {
         }
     }
 
-    private bool HasRoom()
+    protected bool HasRoom()
     {
         bool hasRoom = false;
         for(int i = 0; i< gameBoard.MaxAmountOfShipsOnTile;i++)
@@ -168,5 +174,15 @@ public class Tile : MonoBehaviour {
             }
         }
         return hasRoom;
+    }
+
+    void OnMouseDown()
+    {
+        camera.CameraMoveMode = true;
+    }
+
+    void OnMouseUp()
+    {
+        camera.CameraMoveMode = false;
     }
 }
