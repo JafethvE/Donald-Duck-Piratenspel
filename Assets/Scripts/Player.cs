@@ -42,6 +42,14 @@ public class Player : MonoBehaviour {
     {
         get { return startTile; }
     }
+
+    private TreasureChart treasureChart;
+
+    public TreasureChart TreasureChart
+    {
+        get  { return treasureChart; }
+    }
+
     // Use this for initialization
     void Start () {
 		

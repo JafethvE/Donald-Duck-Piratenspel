@@ -12,9 +12,17 @@ public class TreasureTile : Tile
         set { treasure = value; }
     }
 
-    private bool TreasureCanBeTaken()
+    [SerializeField]
+    private string name;
+
+    public string Name
     {
-        return Treasure != null;
+        get { return name; }
+    }
+
+    public bool TreasureCanBeTaken()
+    {
+        return treasure != null;
     }
 
     public Treasure TakeTreasure()

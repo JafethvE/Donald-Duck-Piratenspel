@@ -192,7 +192,9 @@ public class GameBoard : MonoBehaviour {
         foreach(TreasureTile treasureTile in treasureTiles)
         {
             GameObject treasureObject = Instantiate(treasurePrefab);
-            treasureObject.GetComponent<Treasure>().Worth = possibleTreasureValues[Random.Range(0, possibleTreasureValues.Count)];
+            Treasure treasure = treasureObject.GetComponent<Treasure>();
+            treasure.Worth = possibleTreasureValues[Random.Range(0, possibleTreasureValues.Count)];
+            treasureTile.Treasure = treasure;
             treasureObject.transform.SetParent(treasureTile.transform);
         }
     }

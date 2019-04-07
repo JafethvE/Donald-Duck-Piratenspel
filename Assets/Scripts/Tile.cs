@@ -19,6 +19,7 @@ public class Tile : MonoBehaviour {
         get { return gameBoard; }
     }
 
+    //The button that's on this tile.
     [SerializeField]
     protected Button button;
 
@@ -30,11 +31,14 @@ public class Tile : MonoBehaviour {
     [SerializeField]
 	protected List<Tile> neighbours;
 
+    //Can the current player travel to this tile with their throw or not.
     protected bool travelable;
 
+    //The delay between flashes.
     [SerializeField]
     protected float flashDelay;
 
+    //Current timestamp of the flash delay.
     protected float flash;
 
     [SerializeField]
@@ -101,6 +105,7 @@ public class Tile : MonoBehaviour {
         }
     }
 
+    //Adds a player's ship on this tile.
     public void AddShip(Ship ship)
     {
         for(int i = 0;i<gameBoard.MaxAmountOfShipsOnTile;i++)
@@ -115,6 +120,7 @@ public class Tile : MonoBehaviour {
         }
     }
 
+    //Finds all possible routes with the player's dice roll.
     public void FindRoutes(int roll)
     {
         List<Tile> endgoals = new List<Tile>();
