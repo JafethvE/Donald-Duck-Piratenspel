@@ -101,6 +101,9 @@ public class GameBoard : MonoBehaviour {
     [SerializeField]
     private GameObject treasurePrefab;
 
+    [SerializeField]
+    private Text diceNumberText;
+
     //Use this for initialization
     private void Start () {
         playingPlayers = new List<Player>();
@@ -108,6 +111,7 @@ public class GameBoard : MonoBehaviour {
         InitialiseGame(2, 0);
         rolled = false;
         PlaceTreasures();
+        diceNumberText.text = "";
 	}
 
     public void Roll()
@@ -115,6 +119,7 @@ public class GameBoard : MonoBehaviour {
         if(!rolled)
         { 
             int roll = Random.Range(1, dice);
+            diceNumberText.text = roll.ToString();
             currentPlayer.Ship.FindRoutes(roll);
             rolled = true;
         }
